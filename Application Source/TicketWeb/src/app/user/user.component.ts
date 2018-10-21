@@ -15,6 +15,7 @@ export class UserComponent implements OnInit {
 
   user: FirebaseUserModel = new FirebaseUserModel();
   profileForm: FormGroup;
+  usrUID: string;
 
   constructor(
     public userService: UserService,
@@ -31,6 +32,8 @@ export class UserComponent implements OnInit {
       const data = routeData['data'];
       if (data) {
         this.user = data;
+        // const usr = user.auth().currentUser;
+        this.usrUID = this.user.uid;
         this.createForm(this.user.name);
       }
     });

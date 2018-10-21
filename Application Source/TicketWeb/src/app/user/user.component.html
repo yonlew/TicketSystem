@@ -5,9 +5,7 @@
         <img class="card-img-top image" [src]="user.image" alt="Card image cap">
         <div *ngIf='user.provider != "password"'class="card-body">
           <h4 class="card-title">{{user.name}}</h4>
-          <!-- <h3>Howdy, {{ user.name }}</h3>
-          <img class="card-img-top" [src]="user.photoURL || 'https://api.adorable.io/avatars/109/fire.png'" width=50px> -->
-          <p class="text-truncate">UID: {{ user.UID }}???</p>
+          <p class="text-truncate">UID: {{ user.uid }}</p>
           <p class="card-text">This is an example of Social Authentication using Firebase in an Angular 5 web app. </p>
         </div>
         <div *ngIf='user.provider == "password"'class="card-body">
