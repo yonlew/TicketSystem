@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
-
 import { Calendar } from '@ionic-native/calendar';
+
+import { CalendarPage } from '../calendar/calendar';
 /**
  * Generated class for the AddEventPage page.
  *
@@ -47,6 +48,10 @@ export class AddEventPage {
         alert.present();
       }
     );
+  }
+
+  cancel() {
+    this.navCtrl.push(CalendarPage);
   }
 
   ionViewDidLoad() {

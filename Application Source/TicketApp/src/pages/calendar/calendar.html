@@ -8,12 +8,12 @@
 
   <ion-navbar>
     <ion-title>My Calendar</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)='addEvent()'>
+        <ion-icon name="add-circle"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
-  <ion-buttons end>
-    <button ion-button icon-only (click)='addEvent()'>
-      <ion-icon name="add-circle"></ion-icon>
-    </button>
-  </ion-buttons>
 
 </ion-header>
 
@@ -43,13 +43,30 @@
         <ion-col>Sat</ion-col>
       </ion-row>
       <ion-row class="calendar-date">
-        <ion-col col-1 *ngFor="let lastDay of daysInLastMonth" class="last-month">{{lastDay}}</ion-col>
-        <ion-col col-1 *ngFor="let day of daysInThisMonth">
+        <ion-col col-1 *ngFor="let lastDay of daysInLastMonth" class="last-month" (click)="goToLastMonth()">{{lastDay}}</ion-col>
+        <ion-col col-1 *ngFor="let day of daysInThisMonth" (click)="selectDate(day)">
           <span class="currentDate" *ngIf="currentDate === day; else otherDate">{{day}}</span>
-          <ng-template #otherDate class="otherDate">{{day}}</ng-template>
+          <ng-template #otherDate class="otherDate">
+            {{day}}<br>
+            <div class="event-bullet" *ngIf="checkEvent(day)"></div>
+          </ng-template>
         </ion-col>
-        <ion-col col-1 *ngFor="let nextDay of daysInNextMonth" class="next-month">{{nextDay}}</ion-col>
+        <ion-col col-1 *ngFor="let nextDay of daysInNextMonth" class="next-month" (click)="goToNextMonth()">{{nextDay}}</ion-col>
       </ion-row>
     </ion-grid>
+  </div>
+  <div class="selected-event" *ngIf="isSelected ">
+    <ion-list>
+      <ion-item *ngFor="let select of selectedEvent ">
+        <ion-buttons end>
+          <button ion-button clear icon-only (click)="deleteEvent(select) ">
+            <ion-icon name="close "></ion-icon>
+          </button>
+        </ion-buttons>
+        <h2>{{select.title}}</h2>
+        <h3>{{select.message}}</h3>
+        <p>Start Date: {{select.startDate}}<br> Start Date: {{select.endDate}}</p>
+      </ion-item>
+    </ion-list>
   </div>
 </ion-content>
