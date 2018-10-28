@@ -13,7 +13,7 @@ export class HomePage {
     // this.calendar = new CalendarPage();
   }
 
-  anOtherPage() {
+  goToCalendar() {
     this.navCtrl.push(CalendarPage);
   }
 }

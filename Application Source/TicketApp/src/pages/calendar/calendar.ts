@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
+import { AddEventPage } from '../add-event/add-event';
 /**
  * Generated class for the CalendarPage page.
  *
@@ -27,6 +28,12 @@ export class CalendarPage {
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
+  ionViewWillEnter() {
+    this.date = new Date();
+    this.monthNames = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+    this.getDaysOfMonth();
+  }
+
   getDaysOfMonth() {
     this.daysInThisMonth = new Array();
     this.daysInLastMonth = new Array();
@@ -51,7 +58,7 @@ export class CalendarPage {
     }
 
     var lastDayThisMonth = new Date(this.date.getFullYear(), this.date.getMonth() + 1, 0).getDay();
-    var nextNumOfDays = new Date(this.date.getFullYear(), this.date.getMonth() + 2, 0).getDate();
+    // var nextNumOfDays = new Date(this.date.getFullYear(), this.date.getMonth() + 2, 0).getDate();
     for (i = 0; i < (6 - lastDayThisMonth); i++) {
       this.daysInNextMonth.push(i + 1);
     }
@@ -71,6 +78,10 @@ export class CalendarPage {
   goToNextMonth() {
     this.date = new Date(this.date.getFullYear(), this.date.getMonth() + 2, 0);
     this.getDaysOfMonth
+  }
+
+  addEvent() {
+    this.navCtrl.push(AddEventPage);
   }
 
   ionViewDidLoad() {
